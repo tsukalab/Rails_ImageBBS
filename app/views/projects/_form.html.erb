@@ -21,6 +21,26 @@
     <%= form.text_area :description, id: :project_description %>
   </div>
 
+  <div class="field">
+    <% if @project.image? %>
+      <div class="thumbnail">
+        <%= image_tag @project.image.url %>
+      </div>
+    <% end %><br>
+    <%= form.label :image %><br>
+    <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache %>
+  </div>
+
+  <div class="field">
+    <% if @project.persisted? && @project.image? %>
+      <label>
+        <%= form.check_box :remove_image %>
+        画像を削除
+      </label>
+    <% end %>
+  </div> 
+
   <div class="actions">
     <%= form.submit %>
   </div>
