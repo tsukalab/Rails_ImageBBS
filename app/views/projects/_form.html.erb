@@ -1,4 +1,4 @@
-<%= form_with(model: project, local: true) do |form| %>
+<%= form_with(model: project, local: true) do |f| %>
   <% if project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :project_name %>
+    <%= f.label :name %>
+    <%= f.text_field :name, id: :project_name %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :project_description %>
+    <%= f.label :description %>
+    <%= f.text_area :description, id: :project_description %>
   </div>
 
   <div class="field">
@@ -27,21 +27,21 @@
         <%= image_tag @project.image.url %>
       </div>
     <% end %><br>
-    <%= form.label :image %><br>
-    <%= form.file_field :image %>
-    <%= form.hidden_field :image_cache %>
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
   </div>
 
   <div class="field">
     <% if @project.persisted? && @project.image? %>
       <label>
-        <%= form.check_box :remove_image %>
+        <%= f.check_box :remove_image %>
         画像を削除
       </label>
     <% end %>
   </div> 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>
